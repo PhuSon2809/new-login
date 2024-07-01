@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="./assets/icons/logo-eCommerce.svg"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ECommerce</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              customThin: ["Thin"],
+              customXLight: ["Xlight"],
+              customLight: ["Light"],
+              customMedium: ["Medium"],
+              customRegular: ["Regular"],
+              customSemiBold: ["SemiBold"],
+              customBold: ["Bold"],
+              customXBold: ["XBold"],
+              customBlack: ["Black"],
+              customHeavy: ["Heavy"],
+              customItalic: ["Italic"],
+            },
+            colors: {
+              blackMain: "#0D0D0D",
+              // gray
+              greyLight: "#F8F8F9",
+              greyMain: "#F6F6F7",
+              // blue
+              blueMain: "#5495FC",
+              // green
+              greenLight: "#31D366",
+              greenMain: "#60EC8E",
+              // orange
+              orangeMain: "#FF9900",
+              // yellow
+              yellowMain: "#FFD020",
+              // red
+              redMain: "#E33E3E",
+              // purple
+              purpleMain: "#9A3EE3",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <!-- <iframe
+      src="./loading.html"
+      width="100%"
+      height="100%"
+      frameborder="0"
+    ></iframe> -->
+
+    <div class="landing-container">
+      <div class="icons-container">
+        <div class="wave-icon">
+          <img src="./assets/icons/ic_wallet.svg" alt="icon_0" />
+        </div>
+        <div class="wave-icon">
+          <img src="./assets/icons/ic_dapp.svg" alt="icon_1" />
+        </div>
+        <div class="wave-icon">
+          <img src="./assets/icons/ic_wallet.svg" alt="icon_2" />
+        </div>
+        <div class="wave-icon">
+          <img src="./assets/icons/ic_bar.svg" alt="icon_3" />
+        </div>
+        <div class="wave-icon">
+          <img src="./assets/icons/ic_author.svg" alt="icon_4" />
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="modal-wrapper"
+      class="fixed inset-0 w-screen h-screen overflow-hidden bg-black/[.20] z-[1000] hidden"
+    >
+      <div class="w-full h-full p-5 flex justify-end relative">
+        <div
+          class="h-full aspect-[9/20] rounded-2xl bg-white/[.88] backdrop-blur-[80px] p-5 pt-0 flex relative overflow-hidden min-w-[340px]"
+        >
+          <!-- Login home -->
+          <div
+            id="login-home"
+            class="flex flex-col justify-between transition duration-200 ease-in-out"
+          >
+            <div>
+              <div
+                class="w-full flex text-[#0D0D0D]/[.64] text-[18px]/[22px] relative"
+              >
+                <button
+                  id="import-tab"
+                  class="tab h-[68px] w-1/2 text-center font-customSemiBold text-[#0D0D0D]"
+                >
+                  Import an <br />
+                  existing account
+                </button>
+                <button id="create-tab" class="tab h-[68px] w-1/2 text-center">
+                  Create a <br />
+                  new account
+                </button>
+                <span
+                  class="w-full absolute bottom-0 left-0 h-[1px] bg-[#0D0D0D]/[.44]"
+                ></span>
+                <span
+                  id="tab-indicator"
+                  class="w-1/2 absolute bottom-[-0.5px] h-[2px]"
+                  style="
+                    background: linear-gradient(
+                      270deg,
+                      #5495fc 0%,
+                      #31d366 100%
+                    );
+                    transition: left 0.8s;
+                  "
+                ></span>
+              </div>
+
+              <div id="container">
+                <div id="import-content" class="w-full mt-5 block">
+                  <div class="font-customBold text-[20px]/[28px]">
+                    Welcome back,
+                  </div>
+                  <div class="text-[14px]/[24px] text-[#0D0D0D]/[.64] mt-2">
+                    Import an existing wallet to quickly access and manage your
+                    funds for seamless shopping.
+                  </div>
+                  <div class="flex flex-col mt-5 gap-3">
+                    <button
+                      id="import-seed"
+                      class="w-full h-[84px] px-3 flex justify-between items-center bg-white rounded-[8.4px] hover:cursor-pointer"
+                    >
+                      <div class="w-full flex flex-row items-center gap-3">
+                        <img
+                          src="./assets/icons/blockChain.svg"
+                          class="w-10 h-10 object-cover"
+                        />
+                        <span class="font-customBold text-[1rem]/[16.8px]">
+                          Import with Seed Phrase
+                        </span>
+                      </div>
+                      <img
+                        src="./assets/icons/ic_arrow.svg"
+                        class="w-6 h-6 object-cover"
+                      />
+                    </button>
+                    <button
+                      id="import-pk"
+                      class="w-full h-[84px] px-3 flex justify-between items-center bg-white rounded-[8.4px] hover:cursor-pointer"
+                    >
+                      <div class="w-full flex flex-row items-center gap-3">
+                        <img
+                          src="./assets/icons/priKey.svg"
+                          class="w-10 h-10 object-cover"
+                        />
+                        <span class="font-customBold text-[1rem]/[16.8px]">
+                          Import with Seed Phrase
+                        </span>
+                      </div>
+                      <img
+                        src="./assets/icons/ic_arrow.svg"
+                        class="w-6 h-6 object-cover"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div id="create-content" class="w-full mt-5 hidden">
+                  <div class="font-customBold text-[20px]/[28px]">Welcome,</div>
+                  <div class="text-[14px]/[24px] text-[#0D0D0D]/[.64] mt-2">
+                    Create a new account to start shopping and enjoy exclusive
+                    offers.
+                  </div>
+                  <div class="flex flex-col mt-5 gap-3">
+                    <button
+                      id="create-seed"
+                      class="w-full h-[84px] px-3 flex justify-between items-center bg-white rounded-[8.4px] hover:cursor-pointer"
+                    >
+                      <div class="w-full flex flex-row items-center gap-3">
+                        <img
+                          src="./assets/icons/blockChain.svg"
+                          class="w-10 h-10 object-cover"
+                        />
+                        <span class="font-customBold text-[1rem]/[16.8px]">
+                          Create with Seed Phrase
+                        </span>
+                      </div>
+                      <img
+                        src="./assets/icons/ic_arrow.svg"
+                        class="w-6 h-6 object-cover"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="toggle-content"
+              class="w-full text-[16px]/[16px] text-[#0D0D0D]/[.64] text-center justify-self-end mt-auto"
+            >
+              New User?
+              <span
+                id="toggle-link"
+                class="text-[#0D0D0D] font-customSemiBold underline-offset-2 underline"
+              >
+                Create a new wallet
+              </span>
+            </div>
+          </div>
+
+          <!-- Create Wallet -->
+          <div
+            id="create-wallet"
+            class="pt-4 flex flex-col justify-between transition duration-200 ease-in-out hidden"
+          >
+            <body class="flex flex-col gap-3 mt-3 text-[#0D0D0D]">
+              <span class="font-customSemiBold text-[1.25rem]/[1.625rem] mb-3"
+                >Create with Seed Phrase!
+              </span>
+              <span class="text-[0.875rem]/[1.375rem] text-[#0D0D0D]/[.64]">
+                Please save these 24 words on a piece of paper. This seed will
+                allow you to sign in your account.
+              </span>
+
+              <div
+                class="py-5 flex flex-col gap-5 text-[#0D0D0D] overflow-hidden grow"
+              >
+                <div id="seed-phrase" class="flex gap-2 flex-wrap"></div>
+
+                <div class="w-full h-[1px] bg-[#0D0D0D]/[.12]"></div>
+                <p class="underline font-semibold text-center">
+                  Custom your seed phrase
+                </p>
+
+                <div id="error" class="text-red-500 text-[0.8rem]"></div>
+                <button id="copy-seed" class="underline">
+                  Copy your seed phrase
+                </button>
+              </div>
+
+              <div class="flex w-full gap-3">
+                <button
+                  id="back-button"
+                  class="w-12 h-12 flex justify-center items-center rounded-full border border-solid border-[#00000038] hover:cursor-pointer"
+                >
+                  <img src="./assets/icons/arrow-left.svg" class="w-6 h-6" />
+                </button>
+                <button
+                  id="continue-button-step-name"
+                  class="grow flex items-center justify-center uppercase bg-[#0D0D0D] text-[1.125rem] text-white rounded-[26px] hover:cursor-pointer"
+                >
+                  Continue
+                </button>
+              </div>
+            </body>
+          </div>
+
+          <div  
+          id="create-wallet-step-name"
+          class="w-full pt-4 flex flex-col justify-between transition duration-200 ease-in-out hidden">
+        </div>
+
+          <!-- Import Seed Phrase -->
+          <div
+            id="import-seed-phrase"
+            class="w-full pt-4 flex flex-col justify-between transition duration-200 ease-in-out hidden"
+          >
+            <div
+              class="w-full max-w-[414px] pb-5 flex flex-col gap-3 text-[#0D0D0D] text-[1.25rem]/[1.5rem]"
+            >
+              <span class="font-customSemiBold text-[1.25rem]/[27.3px] mb-2"
+                >Import with Seed Phrase!</span
+              >
+              <div class="min-h-[250px] max-h-[40%]">
+                <div class="relative bg-white p-3 h-full rounded-[8.4px]">
+                  <textarea
+                    id="input-seed-phrase"
+                    class="w-full h-full text-[1rem] outline-none border-none"
+                    placeholder="Enter 24 seed phrase"
+                  ></textarea>
+                  <img
+                    id="icon-paste-seed"
+                    src="./assets/icons/paste.svg"
+                    class="w-6 h-6 absolute top-2 right-2"
+                  />
+                </div>
+                <div id="error-input" class="text-red-500 text-[0.8rem]"></div>
+              </div>
+
+              <div class="w-full max-h-[47.8%] flex flex-1 flex-col items-center gap-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-[67px] h-[1px] bg-black/[.10]"></div>
+                  <p class="text-[16px]/[26px] font-customSemiBold tracking-[1%]">QR</p>
+                  <div class="w-[67px] h-[1px] bg-black/[.10]"></div>
+                </div>
+              
+                <div class="w-full h-full min-h-[260px] p-3 flex flex-col gap-3 items-center rounded-[8.4px] border-[2px] border-dotted border-blackMain/[.22]">
+                  <div id="wrapper-img-qr-seed" class="size-[188px] p-2 bg-white rounded-lg hidden">
+                    <img id="img-qr-seed" src="" alt="imageToShow" class="size-full object-cover object-center" />
+                  </div>
+              
+                  <div id="content-select-file" class="flex flex-1 flex-col items-center justify-center" >
+                    <img src="./assets/icons/ic_add_photo.svg" alt="imageToShow" class="size-6 object-cover object-center" />
+                    <p class="text-[16px]/[27.3px] tracking-[1%] font-customMedium">Input with QR code</p>
+                  </div>
+              
+                  <div class="w-full flex items-center gap-1 text-[14px] tracking-[1%]">
+                    <button class="w-full h-[33px] rounded border-[1px] border-solid border-blackMain hover:scale-[102%] transition-all duration-150 ease-in-out">Scan QR code</button>
+                    
+                    <div class="w-full h-[33px] hover:scale-[102%] transition-all duration-150 ease-in-out relative">
+                      <button class="size-full rounded border-[1px] border-solid border-blackMain">Upload image</button>
+                      <input id="select-qr-seed" type="file" class="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex w-full gap-3">
+              <button
+                id="back-button-seed-phrase"
+                class="w-12 h-12 flex justify-center items-center rounded-full border border-solid border-[#00000038] hover:cursor-pointer"
+              >
+                <img src="./assets/icons/arrow-left.svg" class="w-6 h-6" />
+              </button>
+              <button
+                id="continue-button"
+                class="grow flex items-center justify-center uppercase bg-[#0D0D0D] text-[1.125rem] text-white rounded-[26px] hover:cursor-pointer"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+
+          <!-- Import Private Key -->
+          <div
+            id="import-private-key"
+            class="w-full pt-4 flex flex-col justify-between transition duration-200 ease-in-out hidden"
+          >
+        <div class="w-full">
+            <span class="font-customSemiBold text-[1.25rem]/[27.3px]" >
+            Import with Private Key!
+            </span>
+          
+              <div class="mt-5">
+                <div class="relative bg-white p-3 w-full h-full rounded-[8.4px]">
+                  <input
+                    id="input-pk"
+                    class="w-full h-full text-[1rem] outline-none border-none"
+                    placeholder="Enter private key"
+                  ></input>
+                  <img
+                    id="icon-paste-pk"
+                    src="./assets/icons/paste.svg"
+                    class="w-6 h-6 absolute top-2 right-2"
+                  />
+                </div>
+                <div id="error-input" class="text-red-500 text-[0.8rem]"></div>
+              </div>
+
+              <div class="w-full max-h-[47.8%] flex flex-1 flex-col items-center gap-3 mt-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-[67px] h-[1px] bg-black/[.10]"></div>
+                  <p class="text-[16px]/[26px] font-customSemiBold tracking-[1%]">QR</p>
+                  <div class="w-[67px] h-[1px] bg-black/[.10]"></div>
+                </div>
+              
+                <div class="w-full h-full min-h-[260px] p-3 flex flex-col gap-3 items-center rounded-[8.4px] border-[2px] border-dotted border-blackMain/[.22]">
+                  <div id="wrapper-img-qr-pk" class="size-[188px] p-2 bg-white rounded-lg hidden">
+                    <img id="img-qr-pk" src="" alt="imageToShow" class="size-full object-cover object-center" />
+                  </div>
+              
+                  <div id="content-select-file-pk" class="flex flex-1 flex-col items-center justify-center" >
+                    <img src="./assets/icons/ic_add_photo.svg" alt="imageToShow" class="size-6 object-cover object-center" />
+                    <p class="text-[16px]/[27.3px] tracking-[1%] font-customMedium">Input with QR code</p>
+                  </div>
+              
+                  <div class="w-full flex items-center gap-1 text-[14px] tracking-[1%]">
+                    <button class="w-full h-[33px] rounded border-[1px] border-solid border-blackMain hover:scale-[102%] transition-all duration-150 ease-in-out">Scan QR code</button>
+                    
+                    <div class="w-full h-[33px] hover:scale-[102%] transition-all duration-150 ease-in-out relative">
+                      <button class="size-full rounded border-[1px] border-solid border-blackMain">Upload image</button>
+                      <input id="select-qr-pk" type="file" class="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+            <div class="flex w-full gap-3">
+              <button
+                id="back-button-private-key"
+                class="w-12 h-12 flex justify-center items-center rounded-full border border-solid border-[#00000038] hover:cursor-pointer"
+              >
+                <img src="./assets/icons/arrow-left.svg" class="w-6 h-6" />
+              </button>
+              <button
+                id="continue-button"
+                class="grow flex items-center justify-center uppercase bg-[#0D0D0D] text-[1.125rem] text-white rounded-[26px] hover:cursor-pointer"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- js -->
+    <script src="./js/finsdk.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modalWrapperSection = document.getElementById("modal-wrapper");
+
+        let isSignIn = false;
+        let loadingSdk = false;
+        let activeWallet = null;
+        let hideIndex = false;
+        let showModalSecrectKey = false;
+        let isFetchSeed = false;
+
+        async function initSdk() {
+          console.log("Initializing SDK...");
+          window.finSdk?.init({
+            onProgress: () => {
+              console.log("init onProgress");
+            },
+            onFinish() {
+              loadingSdk = true;
+              fetchActiveWallet();
+              console.log("init finished");
+              modalWrapperSection.classList.remove("hidden");
+              modalWrapperSection.classList.add("flex");
+            },
+            onError: (error) => {
+              console.log("Error initializing SDK", error);
+              alert(error);
+            },
+            onRequestSecrectKey: () => {
+              showModalSecrectKey = true;
+            },
+          });
+        }
+
+        async function fetchActiveWallet() {
+          const activeWallet = await window.finSdk.getWalletActive();
+          console.log("activeWallet data", activeWallet);
+          if (!activeWallet?.success || !activeWallet.data) {
+            showModalSecrectKey = false;
+          } else {
+            setLocalStorage("active-wallet", activeWallet.data);
+            showModalSecrectKey = true;
+          }
+        }
+
+        initSdk();
+
+        const importTab = document.getElementById("import-tab");
+        const createTab = document.getElementById("create-tab");
+        const importContent = document.getElementById("import-content");
+        const createContent = document.getElementById("create-content");
+        const tabIndicator = document.getElementById("tab-indicator");
+        const toggleLink = document.getElementById("toggle-link");
+        const toggleContent = document.getElementById("toggle-content");
+
+        const buttonCreateSeed = document.getElementById("create-seed");
+        const buttonImportSeed = document.getElementById("import-seed");
+        const buttonImportPrivateKey = document.getElementById("import-pk");
+
+        const loginHomeSection = document.getElementById("login-home");
+        const createWalletSection = document.getElementById("create-wallet");
+        const importSeedPhraseSection =
+          document.getElementById("import-seed-phrase");
+        const importPrivateKeySection =
+          document.getElementById("import-private-key");
+        const createWalletStepNameSection =
+          document.getElementById("create-wallet-step-name");
+        let isImportTab = true;
+
+        function setTab(importTabSelected) {
+          isImportTab = importTabSelected;
+          console.log("importTabSelected", importTabSelected);
+          if (isImportTab) {
+            importContent.classList.remove("hidden");
+            importContent.classList.add("block");
+            createContent.classList.add("hidden");
+            createContent.classList.remove("block");
+            tabIndicator.style.left = "0";
+            toggleContent.innerHTML = `New User? <span id="toggle-link" class="text-[#0D0D0D] font-customSemiBold underline-offset-2 underline">Create a new wallet</span>`;
+          } else {
+            importContent.classList.add("hidden");
+            importContent.classList.remove("block");
+            createContent.classList.remove("hidden");
+            createContent.classList.add("block");
+            tabIndicator.style.left = "50%";
+            toggleContent.innerHTML = `Have a wallet? <span id="toggle-link" class="text-[#0D0D0D] font-customSemiBold underline-offset-2 underline">Import an wallet</span>`;
+          }
+          document
+            .getElementById("toggle-link")
+            .addEventListener("click", () => {
+              setTab(!isImportTab);
+            });
+        }
+
+        importTab.addEventListener("click", () => {
+          setTab(true);
+          console.log("click", true);
+        });
+
+        createTab.addEventListener("click", () => {
+          setTab(false);
+          console.log("click", false);
+        });
+
+        toggleLink.addEventListener("click", () => {
+          setTab(!isImportTab);
+        });
+
+        buttonCreateSeed.addEventListener("click", () => {
+          loginHomeSection.classList.add("hidden");
+          createWalletSection.classList.remove("hidden");
+          createWalletSection.classList.add("flex");
+          fetchSeed();
+        });
+
+        buttonImportSeed.addEventListener("click", () => {
+          loginHomeSection.classList.add("hidden");
+          importSeedPhraseSection.classList.remove("hidden");
+          importSeedPhraseSection.classList.add("flex");
+        });
+
+        buttonImportPrivateKey.addEventListener("click", () => {
+          loginHomeSection.classList.add("hidden");
+          importPrivateKeySection.classList.remove("hidden");
+          importPrivateKeySection.classList.add("flex");
+        });
+
+        // create wallet section
+        const seedPhraseToString = (seed) => seed.join(" ");
+        const seedPhraseElement = document.getElementById("seed-phrase");
+        const errorElement = document.getElementById("error");
+        const copyButton = document.getElementById("copy-seed");
+        const continueButton = document.getElementById("continue-button");
+        const backButton = document.getElementById("back-button");
+        const backButtonSeedPhrase = document.getElementById(
+          "back-button-seed-phrase"
+        );
+        const backButtonPrivateKey = document.getElementById(
+          "back-button-private-key"
+        );
+
+        let seedPhrase = [];
+
+        async function fetchSeed() {
+          seedPhrase = await window.finSdk.getSeed();
+          if (!seedPhrase.success)
+            return alert("Error when create seed phrase!");
+          renderSeedPhrase();
+        }
+
+        function renderSeedPhrase() {
+          console.log("seedPhrase", seedPhrase);
+          seedPhraseElement.innerHTML = seedPhrase.data
+            .map(
+              (seed) =>
+                `<span class="h-[23px] flex items-center justify-center bg-white text-[0.875rem]/[1.5rem] px-2 rounded font-customMedium tracking-[-1%]">${seed}</span>`
+            )
+            .join("");
+        }
+
+        function copySeed() {
+          if (seedPhrase.data && seedPhrase.data.length !== 24) {
+            console.log("seedPhrase", seedPhrase, seedPhrase.data.length);
+            errorElement.textContent = "Seed phrase must contain 24 words!";
+            return;
+          }
+          navigator.clipboard
+            .writeText(seedPhraseToString(seedPhrase.data))
+            .then(
+              function () {
+                alert("Seed phrase copied to clipboard!");
+              },
+              function () {
+                alert("Failed to copy seed phrase to clipboard.");
+              }
+            );
+        }
+
+        copyButton.addEventListener("click", copySeed);
+        continueButton.addEventListener("click", () => {
+          if (seedPhrase.data.length !== 24) {
+            errorElement.textContent = "Seed phrase must contain 24 words!";
+            return;
+          }
+          // Implement your next step logic here
+        });
+        backButton.addEventListener("click", () => {
+          loginHomeSection.classList.remove("hidden");
+          loginHomeSection.classList.add("flex");
+          createWalletSection.classList.remove("flex");
+          createWalletSection.classList.add("hidden");
+        });
+        backButtonSeedPhrase.addEventListener("click", () => {
+          loginHomeSection.classList.remove("hidden");
+          loginHomeSection.classList.add("flex");
+          importSeedPhraseSection.classList.remove("flex");
+          importSeedPhraseSection.classList.add("hidden");
+        });
+        backButtonPrivateKey.addEventListener("click", () => {
+          loginHomeSection.classList.remove("hidden");
+          loginHomeSection.classList.add("flex");
+          importPrivateKeySection.classList.remove("flex");
+          importPrivateKeySection.classList.add("hidden");
+        });
+
+        const inputSeedPhrase = document.getElementById("input-seed-phrase");
+        const inputPrivateKey = document.getElementById("input-pk");
+        const iconPasteSeed = document.getElementById("icon-paste-seed");
+        const iconPastePK = document.getElementById("icon-paste-pk");
+        const errorInputEle = document.getElementById("error-input");
+        const contentSelectFile = document.getElementById("content-select-file");
+        const contentSelectFilePk = document.getElementById("content-select-file-pk");
+        const selectQRSeed = document.getElementById("select-qr-seed");
+        const selectQRpk = document.getElementById("select-qr-pk");
+        const wrapperImgQRSeed = document.getElementById("wrapper-img-qr-seed");
+        const imgQRSeed = document.getElementById("img-qr-seed");
+        const wrapperImgQRPK = document.getElementById("wrapper-img-qr-pk");
+        const imgQRSPK = document.getElementById("img-qr-pk");
+        const continueButtonStepName = document.getElementById("continue-button-step-name");
+
+        continueButtonStepName.addEventListener("click", () => {
+          createWalletSection.classList.remove("hidden");
+          createWalletSection.classList.add("flex");
+          createWalletStepNameSection.classList.remove("flex");
+          createWalletStepNameSection.classList.add("hidden");
+        });
+
+        // import seed phrase
+        let customSeedphrase = "";
+        let imageToShow = "";
+        let modalSuccess = false;
+        let errorInput = "";
+
+        iconPasteSeed.addEventListener("click", async () => {
+          const string = await navigator.clipboard.readText();
+          inputSeedPhrase.value = string;
+
+          inputSeedPhrase.setAttribute("aria-valuetext", string);
+        });
+
+        iconPastePK.addEventListener("click", async () => {
+          const string = await navigator.clipboard.readText();
+          inputPrivateKey.value = string;
+
+          inputPrivateKey.setAttribute("aria-valuetext", string);
+        });
+
+        const handlePastePrivateKey = async () => {
+          const string = await navigator.clipboard.readText();
+          inputPrivateKey.value = string;
+
+          inputPrivateKey.setAttribute("aria-valuetext", string);
+        };
+
+        // Xử lý sự kiện onchange
+        inputSeedPhrase.addEventListener("input", function (event) {
+          const value = event.target.value.trim();
+          if (value !== "" && value.split(" ").length !== 24) {
+            errorInputEle.textContent =
+              "Seed phrase must contain exactly 24 words";
+          } else {
+            errorInputEle.textContent = "";
+          }
+        });
+
+        // inputPrivateKey.addEventListener("input", function (event) {
+        //   const value = event.target.value.trim();
+        //   if (value !== "" && value.split(" ").length !== 24) {
+        //     errorInputEle.textContent =
+        //       "Seed phrase must contain exactly 24 words";
+        //   } else {
+        //     errorInputEle.textContent = "";
+        //   }
+        // });
+
+        const convertStringToSeedPhrase = (str) => {
+  var rules = {
+    A: 1,
+    B: 2,
+    C: 3,
+    D: 4,
+    E: 5,
+    F: 6,
+    G: 7,
+    H: 8,
+    I: 9,
+    J: 10,
+    K: 11,
+    L: 12,
+    M: 13,
+    N: 14,
+    O: 15,
+    P: 16,
+    Q: 17,
+    R: 18,
+    S: 19,
+    T: 20,
+    U: 21,
+    V: 22,
+    W: 23,
+    X: 24,
+    Y: 25,
+    Z: 26,
+    a: 27,
+    b: 28,
+    c: 29,
+    d: 30,
+    e: 31,
+    f: 32,
+    g: 33,
+    h: 34,
+    i: 35,
+    j: 36,
+    k: 37,
+    l: 38,
+    m: 39,
+    n: 40,
+    o: 41,
+    p: 42,
+    q: 43,
+    r: 44,
+    s: 45,
+    t: 46,
+    u: 47,
+    v: 48,
+    w: 49,
+    x: 50,
+    y: 51,
+    z: 52
+  }
+  var arr = []
+  var start = 0
+  var string = str.substring(5)
+  while (arr.length < 24) {
+    const firtLetter = string.substr(start, 1)
+    var subLen = rules[firtLetter]
+    const seed = string.substr(start + 1, subLen)
+    arr.push(seed)
+    start = start + subLen + 1
+  }
+  return arr
+}
+
+        selectQRSeed.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+
+          if (!file) {
+            return;
+          } 
+          
+          wrapperImgQRSeed.classList.remove('hidden')
+          wrapperImgQRSeed.classList.add('flex')
+          contentSelectFile.classList.remove('flex')
+          contentSelectFile.classList.add('hidden')
+          imgQRSeed.src = URL.createObjectURL(file)
+          imgQRSeed.alt = 'Uploaded Image';
+          imgQRSeed.className = 'size-full object-cover object-center';
+          const reader = new FileReader();
+          reader.onloadend = (event) => {  
+          const img = new Image()
+          img.onload = function () {
+          const canvas = document.createElement('canvas')
+          canvas.width = img.width
+          canvas.height = img.height
+          const context = canvas.getContext('2d')
+          context?.drawImage(img, 0, 0)
+          const imageData = context?.getImageData(0, 0, canvas.width, canvas.height)
+          if (imageData) {
+            const code = jsQR(imageData.data, imageData.width, imageData.height)
+            if (code?.data) {
+                const codeConvert = convertStringToSeedPhrase(code.data)
+                if (codeConvert.length === 24) {
+                  inputSeedPhrase.value = codeConvert.join(' ');
+                  inputSeedPhrase.setAttribute("aria-valuetext", codeConvert.join(' '));
+                } else {
+                  alert('Invalid QR seed phrase!')
+                }
+            } else {
+              alert('No QR code found!')
+            }
+          } else {
+            console.error('Failed to get image data!')
+          }
+        }
+
+        if (typeof event.target?.result === 'string') {
+          img.src = event.target.result
+        } else {
+          console.error('FileReader result is not a string')
+        }
+      }
+          reader.readAsDataURL(file);
+        });
+
+        selectQRpk.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+
+          if (!file) {
+            return;
+          } 
+          
+          wrapperImgQRPK.classList.remove('hidden')
+          wrapperImgQRPK.classList.add('flex')
+          contentSelectFilePk.classList.remove('flex')
+          contentSelectFilePk.classList.add('hidden')
+          imgQRSPK.src = URL.createObjectURL(file)
+          imgQRSPK.alt = 'Uploaded Image';
+          imgQRSPK.className = 'size-full object-cover object-center';
+          const reader = new FileReader();
+          reader.onloadend = (event) => {  
+          const img = new Image()
+          img.onload = function () {
+          const canvas = document.createElement('canvas')
+          canvas.width = img.width
+          canvas.height = img.height
+          const context = canvas.getContext('2d')
+          context?.drawImage(img, 0, 0)
+          const imageData = context?.getImageData(0, 0, canvas.width, canvas.height)
+          if (imageData) {
+            const code = jsQR(imageData.data, imageData.width, imageData.height)
+            if (code?.data) {
+              inputPrivateKey.value = code?.data
+              inputPrivateKey.setAttribute("aria-valuetext", code?.data);
+            } else {
+              alert('No QR code found!')
+            }
+          } else {
+            console.error('Failed to get image data!')
+          }
+        }
+
+        if (typeof event.target?.result === 'string') {
+          img.src = event.target.result
+        } else {
+          console.error('FileReader result is not a string')
+        }
+      }
+    
+
+          reader.readAsDataURL(file);
+        });
+
+      });
+    </script>
+    <!-- <script src="./js/loading.js"></script> -->
+  </body>
+</html>
